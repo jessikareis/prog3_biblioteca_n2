@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.femass.gui.EmprestismoController.java">
+   <children>
+      <Label fx:id="CodLivro" layoutX="14.0" layoutY="30.0" text="Lista de Livro" />
+      <Label layoutX="15.0" layoutY="68.0" text="Lista de Exemplar" />
+      <ComboBox fx:id="comboBoxLivro" layoutX="151.0" layoutY="26.0" prefWidth="150.0" />
+      <ComboBox fx:id="comboBoxExemplar" layoutX="151.0" layoutY="64.0" prefWidth="150.0" />
+      <CheckBox fx:id="checkBoxAluno" layoutX="14.0" layoutY="127.0" mnemonicParsing="false" text="Aluno" />
+      <CheckBox fx:id="checkBoxProfessor" layoutX="75.0" layoutY="127.0" mnemonicParsing="false" text="Professor" />
+      <ComboBox fx:id="comboBoxLeitor" layoutX="152.0" layoutY="123.0" prefWidth="150.0" />
+      <DatePicker fx:id="dateData" layoutX="126.0" layoutY="188.0" />
+      <Label fx:id="DataEmprestimo" layoutX="14.0" layoutY="192.0" text="Data do Emprestimo" />
+      <Label fx:id="dataDevolucao" layoutX="15.0" layoutY="241.0" text="Data prevista para devolução" />
+      <Label layoutX="368.0" layoutY="8.0" text="Lista dos Emprestimos" />
+      <TableView fx:id="tableListaAlunos" layoutX="368.0" layoutY="23.0" prefHeight="200.0" prefWidth="286.0">
+        <columns>
+          <TableColumn fx:id="colIdEmprestimo" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="colNomeEmprestimo" prefWidth="75.0" text="Nome" />
+            <TableColumn fx:id="colDataEmprestimo" prefWidth="134.0" text="Data do Emprestimo" />
+        </columns>
+      </TableView>
+      <Label layoutX="370.0" layoutY="262.0" text="Lista dos Atrasados" />
+      <ListView fx:id="listaAtrasados" disable="true" layoutX="371.0" layoutY="278.0" prefHeight="115.0" prefWidth="286.0" />
+      <ScrollBar layoutX="642.0" layoutY="278.0" orientation="VERTICAL" prefHeight="115.0" prefWidth="14.0" />
+      <Button fx:id="BtnRemoverEmprestimo" layoutX="522.0" layoutY="224.0" mnemonicParsing="false" onAction="#btnRemoverEmprestimo_Click" text="Remover Emprestimo" />
+      <Button fx:id="BtnSalvarEmprestimo" layoutX="123.0" layoutY="311.0" mnemonicParsing="false" onAction="#btnSalvarEmprestimo_Click" text="Salvar Emprestimo" />
+      <TextField fx:id="txtDataDevolucao" disable="true" editable="false" layoutX="14.0" layoutY="258.0" prefHeight="25.0" prefWidth="160.0" />
+   </children>
+</Pane>

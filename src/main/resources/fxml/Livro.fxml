@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="14.0" layoutY="21.0" prefHeight="17.0" prefWidth="38.0" text="Título" />
+      <Label layoutX="14.0" layoutY="52.0" prefHeight="17.0" prefWidth="101.0" text="Autor do Livro" />
+      <Label layoutX="14.0" layoutY="115.0" prefHeight="17.0" prefWidth="101.0" text="Livros Registrados" />
+      <TableView fx:id="tableListaLivros" layoutX="14.0" layoutY="144.0" prefHeight="200.0" prefWidth="306.0">
+        <columns>
+          <TableColumn fx:id="colIdLivros" prefWidth="41.0" text="ID" />
+          <TableColumn fx:id="colLivro" prefWidth="109.0" text="Livro" />
+            <TableColumn fx:id="colAutorLivro" prefWidth="155.0" text="Autor" />
+        </columns>
+      </TableView>
+      <Label layoutX="342.0" layoutY="16.0" prefHeight="17.0" prefWidth="113.0" text="Registrar Exemplar" />
+      <TableView fx:id="tableListaExemplares" layoutX="341.0" layoutY="33.0" prefHeight="200.0" prefWidth="246.0">
+         <columns>
+            <TableColumn fx:id="colIdExemplar" prefWidth="41.0" text="ID" />
+            <TableColumn fx:id="colLivroExemplar" prefWidth="109.0" text="Livro" />
+            <TableColumn fx:id="colAutorExemplar" prefWidth="95.0" text="Autor" />
+         </columns>
+      </TableView>
+      <Button fx:id="BtnSalvarExemplar" layoutX="350.0" layoutY="318.0" mnemonicParsing="false" onAction="#btnSalvarExemplar_Click" text="Salvar novo exemplar" />
+      <DatePicker fx:id="dateAquisicao" layoutX="341.0" layoutY="268.0" />
+      <Label layoutX="341.0" layoutY="251.0" prefHeight="17.0" prefWidth="101.0" text="Data de Aquisição" />
+      <Button fx:id="BtnRemoverExemplar" layoutX="350.0" layoutY="346.0" mnemonicParsing="false" onAction="#btnRemoverExemplar_Click" text="Remover exemplar selecionado" />
+      <Button fx:id="BtnRemoverLivro" layoutX="125.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnRemoverLivro_Click" text="Apagar Livro selecionado" />
+      <Button fx:id="BtnSalvarLivro" layoutX="11.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnSalvarLivro_Click" text="Salvar novo Livro" />
+      <TextField fx:id="txtLivro" layoutX="51.0" layoutY="17.0" prefHeight="25.0" prefWidth="210.0" />
+      <ComboBox fx:id="comboAutor" layoutX="14.0" layoutY="69.0" prefHeight="25.0" prefWidth="246.0" />
+   </children>
+</Pane>

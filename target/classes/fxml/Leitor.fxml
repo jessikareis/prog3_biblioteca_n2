@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="tableListaAlunos" layoutX="264.0" layoutY="23.0" prefHeight="200.0" prefWidth="377.0">
+        <columns>
+          <TableColumn fx:id="colIdAluno" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="colMatriculaAluno" prefWidth="75.0" text="Matrícula" />
+          <TableColumn fx:id="colNomeAluno" prefWidth="75.0" text="Nome" />
+            <TableColumn fx:id="colEnderecoAluno" prefWidth="75.0" text="Endereço" />
+            <TableColumn fx:id="colTelAluno" prefWidth="75.0" text="Telefone" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tableListaProfessores" layoutX="264.0" layoutY="274.0" prefHeight="200.0" prefWidth="377.0">
+         <columns>
+            <TableColumn fx:id="colIdProfessor" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="colDisciplinaProfessor" prefWidth="75.0" text="Disciplina" />
+            <TableColumn fx:id="colNomeProfessor" prefWidth="75.0" text="Nome" />
+            <TableColumn fx:id="colEnderecoProfessor" prefWidth="75.0" text="Endereço" />
+            <TableColumn fx:id="colTelefoneProfessor" prefWidth="75.0" text="Telefone" />
+         </columns>
+      </TableView>
+      <Label fx:id="ListaAlunos" layoutX="264.0" layoutY="6.0" prefHeight="17.0" prefWidth="136.0" text="Lista de Alunos" />
+      <Label fx:id="ListaProfessores" layoutX="264.0" layoutY="257.0" prefHeight="17.0" prefWidth="136.0" text="Lista de Professores" />
+      <Button fx:id="BtnRemoverAluno" layoutX="543.0" layoutY="223.0" mnemonicParsing="false" onAction="#btnRemoverAluno_Click" text="Remover Aluno" />
+      <Button fx:id="BtnRemoverProfessor" layoutX="525.0" layoutY="474.0" mnemonicParsing="false" onAction="#btnRemoverProfessor_Click" text="Remover Professor" />
+      <Label fx:id="Nome" layoutX="9.0" layoutY="37.0" prefHeight="17.0" prefWidth="45.0" text="Nome:" />
+      <Label fx:id="Endereco" layoutX="9.0" layoutY="65.0" prefHeight="17.0" prefWidth="60.0" text="Endereço:" />
+      <Label fx:id="Telefone" layoutX="9.0" layoutY="91.0" prefHeight="17.0" prefWidth="60.0" text="Telefone:" />
+      <Label layoutX="9.0" layoutY="185.0" prefHeight="17.0" prefWidth="60.0" />
+      <TextField fx:id="txtNome" layoutX="69.0" layoutY="33.0" />
+      <TextField fx:id="txtEndereco" layoutX="69.0" layoutY="61.0" />
+      <TextField fx:id="txtTelefone" layoutX="69.0" layoutY="88.0" />
+      <TextField fx:id="txtExtra" layoutX="69.0" layoutY="181.0" />
+      <Button fx:id="BtnSalvarLeitor" layoutX="109.0" layoutY="211.0" mnemonicParsing="false" onAction="#btnSalvarLeitor_Click" text="Salvar novo leitor" />
+   </children>
+</Pane>
