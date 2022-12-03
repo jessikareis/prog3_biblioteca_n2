@@ -60,7 +60,7 @@
 			<version>5.6.5.Final</version>
 	</dependency>
 
-         <!-- Dependencia do JPA-->
+        <!-- Dependencia do JPA-->
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <dependency>
             <groupId>org.postgresql</groupId>

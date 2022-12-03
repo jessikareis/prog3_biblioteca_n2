@@ -31,11 +31,12 @@
       <Label fx:id="Nome" layoutX="9.0" layoutY="37.0" prefHeight="17.0" prefWidth="45.0" text="Nome:" />
       <Label fx:id="Endereco" layoutX="9.0" layoutY="65.0" prefHeight="17.0" prefWidth="60.0" text="Endereço:" />
       <Label fx:id="Telefone" layoutX="9.0" layoutY="91.0" prefHeight="17.0" prefWidth="60.0" text="Telefone:" />
-      <Label layoutX="9.0" layoutY="185.0" prefHeight="17.0" prefWidth="60.0" />
       <TextField fx:id="txtNome" layoutX="69.0" layoutY="33.0" />
       <TextField fx:id="txtEndereco" layoutX="69.0" layoutY="61.0" />
       <TextField fx:id="txtTelefone" layoutX="69.0" layoutY="88.0" />
-      <TextField fx:id="txtExtra" layoutX="69.0" layoutY="181.0" />
-      <Button fx:id="BtnSalvarLeitor" layoutX="109.0" layoutY="211.0" mnemonicParsing="false" onAction="#btnSalvarLeitor_Click" text="Salvar novo leitor" />
+      <Button fx:id="BtnSalvarLeitor" layoutX="116.0" layoutY="211.0" mnemonicParsing="false" onAction="#btnSalvarLeitor_Click" text="Salvar novo leitor" />
+      <TextField fx:id="txtExtra" layoutX="76.0" layoutY="174.0" />
+      <Label fx:id="funcao1" layoutX="9.0" layoutY="178.0" prefHeight="17.0" prefWidth="60.0" text="Matrícula:" />
+      <CheckBox fx:id="checkBoxProfessor" layoutX="7.0" layoutY="150.0" mnemonicParsing="false" onAction="#checkBoxProfessor_Select" text="Sou professor" />
    </children>
 </Pane>

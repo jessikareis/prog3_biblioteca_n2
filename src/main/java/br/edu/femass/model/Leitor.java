@@ -14,17 +14,22 @@ public class Leitor {
     protected String telefone;
     protected String nome;
     protected Integer prazoMaxDevolucao;
+    protected String extra;
+    protected boolean funcao;
 
     public static Long proxCod;
 
     public Leitor (){}
-    public Leitor(String endereco, String telefone, String nome, Integer prazoMaxDevolucao) {
+    public Leitor(String endereco, String telefone, String nome, Integer prazoMaxDevolucao, String extra, boolean funcao) {
         this.endereco = endereco;
         this.telefone = telefone;
         this.nome = nome;
         this.prazoMaxDevolucao = prazoMaxDevolucao;
         this.id = proxCod;
+        this.extra = extra;
+        this.funcao = funcao;
         proxCod++;
+
     }
 
     public String getEndereco() {
@@ -33,6 +38,13 @@ public class Leitor {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
+    }
+    public String getExtra() {
+        return extra;
     }
 
     public Long getId() {
@@ -67,5 +79,12 @@ public class Leitor {
         this.prazoMaxDevolucao = prazoMaxDevolucao;
     }
 
+    public void setFuncao(boolean funcao) {
+        this.funcao = funcao;
+    }
+
+    public boolean getFuncao(){
+        return funcao;
+    }
 
 }

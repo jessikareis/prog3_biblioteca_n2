@@ -15,7 +15,7 @@ public class Professor extends Leitor{
 
     public Professor(){}
     public Professor(String endereco, String telefone, String nome, String disciplina) {
-        super(endereco, telefone, nome, 30);
+        // super(endereco, telefone, nome, 30);
         this.disciplina = disciplina;
     }
     public static void atualizarProxCod(List<Professor> professores){

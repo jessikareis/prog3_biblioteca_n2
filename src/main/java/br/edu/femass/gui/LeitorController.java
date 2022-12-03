@@ -16,6 +16,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -31,6 +34,11 @@ public class LeitorController implements Initializable {
         private TextField txtTelefone;
         @FXML
         private TextField txtExtra;
+        @FXML
+        private CheckBox checkBoxProfessor;
+
+        @FXML
+        private Label funcao1;
 
         @FXML
         private Button BtnSalvarLeitor;
@@ -76,6 +84,9 @@ public class LeitorController implements Initializable {
         @FXML
         private Button BtnRemoverProfessor;
 
+        private AlunoDao dao_aluno = new AlunoDao();
+        private ProfessorDao dao_professor = new ProfessorDao();
+
         private Aluno aluno;
         private Professor professor;
         private Leitor leitor;
@@ -83,31 +94,56 @@ public class LeitorController implements Initializable {
         private Boolean incluindo;
 
         @FXML
+        private void checkBoxProfessor_Select(ActionEvent event){
+                
+                if(checkBoxProfessor.isSelected()){
+                        funcao1.setText("Disciplina:");
+                }else{
+                        funcao1.setText("Matrícula:");
+                }
+        //         checkBoxProfessor.setSelected(false);
+        }
+
+        @FXML
         private void btnSalvarLeitor_Click(ActionEvent event) {
 
                 leitor.setNome(txtNome.getText());
                 leitor.setEndereco(txtEndereco.getText());
                 leitor.setTelefone(txtTelefone.getText());
+                leitor.setFuncao(checkBoxProfessor.isSelected());
+                leitor.setExtra(txtExtra.getText());
+                
 
-                 /*if (incluindo) {
-                 dao.inserir(leitor);
-                 } else {
-                 dao.alterar(leitor);
-                 }*/
+                
+                //  if (incluindo) {
+                //  dao.inserir(leitor);
+                //  } else {
+                //  dao.alterar(leitor);
+                //  }
+                
+                dao_aluno.inserir(leitor);
 
+
+                // preencherTableAlunos();
+                // preencherTableProfessores();
+        }
+
+        @FXML
+        private void btnRemoverAluno_Click(ActionEvent event) {
+                /* dao.apagar(leitor); */
                 preencherTableAlunos();
                 preencherTableProfessores();
         }
 
-         @FXML
-         private void excluir_click(ActionEvent event) {
-        /* dao.apagar(leitor);*/
-         preencherTableAlunos();
-         preencherTableProfessores();
-         }
+        @FXML
+        private void btnRemoverProfessor_Click(ActionEvent event) {
+                /* dao.apagar(leitor); */
+                preencherTableAlunos();
+                preencherTableProfessores();
+        }
 
         private void preencherTableAlunos() {
-                /*List<Leitor> leitores = dao.buscarTodosPorId();*/
+                /* List<Leitor> leitores = dao.buscarTodosPorId(); */
                 List<Aluno> leitores = new ArrayList<>();
 
                 ObservableList<Aluno> data = FXCollections.observableArrayList(leitores);
@@ -123,6 +159,7 @@ public class LeitorController implements Initializable {
 
         @Override
         public void initialize(URL url, ResourceBundle rb) {
+
                 colIdAluno.setCellValueFactory(
                                 new PropertyValueFactory<>("id"));
 
@@ -139,22 +176,22 @@ public class LeitorController implements Initializable {
                                 new PropertyValueFactory<>("telefone"));
 
                 colIdProfessor.setCellValueFactory(
-                        new PropertyValueFactory<>("id"));
+                                new PropertyValueFactory<>("id"));
 
                 colDisciplinaProfessor.setCellValueFactory(
-                        new PropertyValueFactory<>("disciplina"));
+                                new PropertyValueFactory<>("disciplina"));
 
                 colNomeProfessor.setCellValueFactory(
-                        new PropertyValueFactory<>("nome"));
+                                new PropertyValueFactory<>("nome"));
 
                 colEnderecoProfessor.setCellValueFactory(
-                        new PropertyValueFactory<>("endereco"));
+                                new PropertyValueFactory<>("endereco"));
 
                 colTelefoneProfessor.setCellValueFactory(
-                        new PropertyValueFactory<>("telefone"));
+                                new PropertyValueFactory<>("telefone"));
 
-                preencherTableAlunos();
-                preencherTableProfessores();
+                // preencherTableAlunos();
+                // preencherTableProfessores();
 
         }
 

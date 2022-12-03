@@ -1,6 +1,7 @@
 package br.edu.femass.gui;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -67,7 +68,7 @@ public class LivroController implements Initializable {
     @FXML
     private Button BtnRemoverExemplar;
 
-    private LivroDao dao = new LivroDao();
+   // private LivroDao dao = new LivroDao();
     private Livro livro;
     private Exemplar exemplares;
 
@@ -80,9 +81,9 @@ public class LivroController implements Initializable {
        // livro.setAutores(comboAutor.getText());
         
         if (incluindo) {
-            dao.inserir(livro);
+           // dao.inserir(livro);
         } else {
-            dao.alterar(livro);
+            //dao.alterar(livro);
         }
 
         preencherTableLivro();
@@ -92,27 +93,52 @@ public class LivroController implements Initializable {
     }
 
     @FXML
-    private void excluir_click(ActionEvent event) {
-        dao.apagar(livro);
+    private void btnRemoverLivro_Click(ActionEvent event) {
+       // dao.apagar(livro);
+        preencherTableLivro();
+        preencherTableExemplares();
+    }
+
+    @FXML
+    private void btnSalvarExemplar_Click(ActionEvent event) {
+
+        livro.setNome(txtLivro.getText());
+       // livro.setAutores(comboAutor.getText());
+        
+        if (incluindo) {
+           // dao.inserir(livro);
+        } else {
+            //dao.alterar(livro);
+        }
+
+        preencherTableLivro();
+        preencherTableExemplares();
+        preencherListaAutor();
+       
+    }
+
+    @FXML
+    private void btnRemoverExemplar_Click(ActionEvent event) {
+       // dao.apagar(livro);
         preencherTableLivro();
         preencherTableExemplares();
     }
 
     private void preencherListaAutor() {
-        List<Livro> livros = dao.buscarTodos();
+        List<Livro> livros = new ArrayList<>();
 
         ObservableList<Livro> data = FXCollections.observableArrayList(livros);
     }
 
     private void preencherTableLivro() {
-        List<Livro> livros = dao.buscarTodosPorId();
+       List<Livro> livros = new ArrayList<>();
 
         ObservableList<Livro> data = FXCollections.observableArrayList(livros);
         tableListaLivros.setItems(data);
     }
 
     private void preencherTableExemplares() {
-        List<Livro> livros = dao.buscarTodosPorId();
+        List<Livro> livros = new ArrayList<>();
 
         ObservableList<Exemplar> data = FXCollections.observableArrayList(exemplares);
         tableListaExemplares.setItems(data);
@@ -132,9 +158,20 @@ public class LivroController implements Initializable {
         colIdExemplar.setCellValueFactory(
                 new PropertyValueFactory<Exemplar, Long>("idExemplar"));
 
+                
+        System.out.println("Passei aqui3");
         preencherTableLivro();
+
+        
+        System.out.println("Passei aqui4");
         preencherTableExemplares();
+
+        
+        System.out.println("Passei aqui5");
         preencherListaAutor();
+
+        
+        System.out.println("Passei aqui 2");
 
     }
 }

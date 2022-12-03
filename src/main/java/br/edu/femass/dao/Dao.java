@@ -11,7 +11,7 @@ public class Dao<E> {
 
     static {
         try{
-            emf = Persistence.createEntityManagerFactory("jpa_prog3");
+            emf = Persistence.createEntityManagerFactory("jpa_prog_3");
         }catch (Exception ex){
             throw new RuntimeException(ex.getMessage());
         }
