@@ -21,7 +21,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.TextAlignment;
 
-
 public class InicioController implements Initializable {
 
     @FXML
@@ -79,16 +78,16 @@ public class InicioController implements Initializable {
             }
         };
 
-        configureTab(inicioTab,"Início", "src/main/resources/images/inicio.png", null, null,replaceBackgroundColorHandler);
-        configureTab(cadastrarAutoresTab, "Cadastrar Autores", "src/main/resources/images/autor.png", cadastrarAutoresContainer, getClass().getResource("Autor.fxml"), replaceBackgroundColorHandler);
-        configureTab(cadastrarLeitoresTab, "Cadastrar Leitores", "src/main/resources/images/leitor.png", cadastrarLeitoresContainer, getClass().getResource("Leitor.fxml"), replaceBackgroundColorHandler);
-        configureTab(cadastrarLivrosTab, "Cadastrar Livros", "src/main/resources/images/livro.png", cadastrarLivrosContainer, getClass().getResource("Livro.fxml"), replaceBackgroundColorHandler);
-        configureTab(emprestimoTab, "Emprestimo", "src/main/resources/images/emprestimo.png", emprestimoContainer, getClass().getResource("Emprestimo.fxml"), replaceBackgroundColorHandler);
+        configureTab(inicioTab,"Início", "/images/inicio.png", inicioContainer,"/fxml/Inicio.fxml",replaceBackgroundColorHandler);
+        configureTab(cadastrarAutoresTab, "Cadastrar Autores", "/images/autor.png", cadastrarAutoresContainer, "/fxml/Autor.fxml", replaceBackgroundColorHandler);
+        configureTab(cadastrarLeitoresTab, "Cadastrar Leitores", "/images/leitor.png", cadastrarLeitoresContainer, "/fxml/Leitor.fxml", replaceBackgroundColorHandler);
+        configureTab(cadastrarLivrosTab, "Cadastrar Livros", "/images/livro.png", cadastrarLivrosContainer, "/fxml/Livro.fxml", replaceBackgroundColorHandler);
+        configureTab(emprestimoTab, "Emprestimo", "/images/emprestimo.png", emprestimoContainer, "/fxml/Emprestimo.fxml", replaceBackgroundColorHandler);
 
         inicioTab.setStyle("-fx-background-color: -fx-focus-color;");
     }
 
-    private void configureTab(Tab tab, String title, String iconPath, AnchorPane containerPane, URL resourceURL, EventHandler<Event> onSelectionChangedEvent) {
+    private void configureTab(Tab tab, String title, String iconPath, AnchorPane containerPane, String resourceURL, EventHandler<Event> onSelectionChangedEvent) {
         double imageWidth = 40.0;
 
         ImageView imageView = new ImageView(new Image(iconPath));
@@ -104,34 +103,30 @@ public class InicioController implements Initializable {
         BorderPane tabPane = new BorderPane();
         Parent contentView;
         try {
-            contentView = FXMLLoader.load(resourceURL);
+            contentView = FXMLLoader.load(getClass().getResource(resourceURL));
             Node screen = contentView.getParent();
             tabPane.setCenter(screen);
+
+            tabPane.setRotate(90.0);
+            tabPane.setMaxWidth(tabWidth);
+
+            tabPane.setBottom(label);
+
+            tab.setText("");
+            tab.setGraphic(tabPane);
+
+            tab.setOnSelectionChanged(onSelectionChangedEvent);
+
+            if (containerPane!= null && resourceURL != null){
+                AnchorPane.setTopAnchor(contentView, 0.0);
+                AnchorPane.setBottomAnchor(contentView, 0.0);
+                AnchorPane.setRightAnchor(contentView, 0.0);
+                AnchorPane.setLeftAnchor(contentView, 0.0);
+            }
         } catch (IOException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
         }
-        tabPane.setRotate(90.0);
-        tabPane.setMaxWidth(tabWidth);
-        
-        tabPane.setBottom(label);
-
-        tab.setText("");
-        tab.setGraphic(tabPane);
-
-        tab.setOnSelectionChanged(onSelectionChangedEvent);
-
-        // if (containerPane!= null && resourceURL != null){
-        //     try {
-        //         containerPane.getChildren().add(contentView);
-        //         AnchorPane.setTopAnchor(contentView, 0.0);
-        //         AnchorPane.setBottomAnchor(contentView, 0.0);
-        //         AnchorPane.setRightAnchor(contentView, 0.0);
-        //         AnchorPane.setLeftAnchor(contentView, 0.0);
-        //     } catch (IOException e) {
-        //         e.printStackTrace();
-        //     }
-        // }
     }
 
     @Override

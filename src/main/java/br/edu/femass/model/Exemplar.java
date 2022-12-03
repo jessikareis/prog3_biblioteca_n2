@@ -11,9 +11,8 @@ import javax.persistence.Id;
 public class Exemplar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String dataAquisicao;
     private Long id;
-
+    private String dataAquisicao;
     private Boolean emprestado;
     public static Long proxCod ;
     public Exemplar() {};

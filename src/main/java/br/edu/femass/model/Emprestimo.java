@@ -4,47 +4,48 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.SingleSelectionModel;
+
+import java.time.LocalDate;
 
 public class Emprestimo{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private DatePicker dataEmprestimo;
-    private DatePicker dataPrevistaDevolucao;
-    private DatePicker dataDevolucao;
+    private Long code;
+    private LocalDate dataEmprestimo;
+    private LocalDate dataPrevistaDevolucao;
+    private LocalDate dataDevolucao;
     private Exemplar exemplar;
     private Leitor leitor;
 
     public Emprestimo(){}
-    public Emprestimo(DatePicker dataEmprestimo, Exemplar exemplar, Leitor leitor) {
+    public Emprestimo(LocalDate dataEmprestimo, Exemplar exemplar, Leitor leitor) {
         this.dataEmprestimo = dataEmprestimo;
         this.exemplar = exemplar;
         this.leitor = leitor;
         this.dataPrevistaDevolucao = dataEmprestimo.plusDays(leitor.getPrazoMaxDevolucao());
     }
 
-    public DatePicker getDataEmprestimo() {
+    public LocalDate getDataEmprestimo() {
         return dataEmprestimo;
     }
 
-    public void setDataEmprestimo(DatePicker dataEmprestimo) {
+    public void setDataEmprestimo(LocalDate dataEmprestimo) {
         this.dataEmprestimo = dataEmprestimo;
     }
 
-    public DatePicker getDataPrevistaDevolucao() {
+    public LocalDate getDataPrevistaDevolucao() {
         return dataPrevistaDevolucao;
     }
 
-    public void setDataPrevistaDevolucao(DatePicker dataPrevistaDevolucao) {
+    public void setDataPrevistaDevolucao(LocalDate dataPrevistaDevolucao) {
         this.dataPrevistaDevolucao = dataPrevistaDevolucao;
     }
 
-    public DatePicker getDataDevolucao() {
+    public LocalDate getDataDevolucao() {
         return dataDevolucao;
     }
 
-    public void setDataDevolucao(DatePicker dataDevolucao) {
+    public void setDataDevolucao(LocalDate dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
     }
 
@@ -65,7 +66,7 @@ public class Emprestimo{
     }
     @Override
     public String toString() {
-        return ("Código do exemplar: " + this.exemplar.getCodigo() + ", " +
+        return ("Código do exemplar: " + this.exemplar.getId() + ", " +
                 "Nome: " + this.leitor.getNome() + ", " +
                 "Dia: " + this.dataEmprestimo + ", "
                 );

@@ -1,11 +1,11 @@
 package br.edu.femass.gui;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import br.edu.femass.dao.EmprestimoDao;
-import br.edu.femass.dao.ExemplarDao;
+
 import br.edu.femass.model.Emprestimo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -66,7 +66,7 @@ public class EmprestismoController implements Initializable {
     @FXML
     private ListView listaAtrasados;
 
-    private EmprestimoDao dao = new EmprestimoDao();
+    //private EmprestimoDao dao = new EmprestimoDao();
     private Emprestimo emprestimo;
 
     private Boolean incluindo;
@@ -82,9 +82,9 @@ public class EmprestismoController implements Initializable {
       
         
         if (incluindo) {
-            dao.inserir(emprestimo);
+            //dao.inserir(emprestimo);
         } else {
-            dao.alterar(emprestimo);
+            //dao.alterar(emprestimo);
         }
 
         preencherTableEmprestimos();
@@ -94,19 +94,19 @@ public class EmprestismoController implements Initializable {
 
     @FXML
     private void excluir_click(ActionEvent event) {
-        dao.apagar(emprestimo);
+        //dao.apagar(emprestimo);
         preencherTableEmprestimos();
         preencherListaAtrasados();
     }
 
     private void preencherListaAtrasados() {
-        List<Emprestimo> emprestimo = dao.buscarTodos();
+        List<Emprestimo> emprestimo = new ArrayList<>();
 
         ObservableList<Emprestimo> data = FXCollections.observableArrayList(emprestimo);
     }
 
     private void preencherTableEmprestimos() {
-        List<Emprestimo> livros = dao.buscarTodosPorId();
+        List<Emprestimo> livros = new ArrayList<>();
 
         ObservableList<Emprestimo> data = FXCollections.observableArrayList(emprestimo);
         tableListaEmprestimos.setItems(data);
@@ -126,4 +126,6 @@ public class EmprestismoController implements Initializable {
         System.out.println("Passei aqui");
     }
 
+    public void btnRemoverEmprestimo_Click(ActionEvent actionEvent) {
+    }
 }

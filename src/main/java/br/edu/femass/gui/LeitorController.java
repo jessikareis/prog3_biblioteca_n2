@@ -1,6 +1,7 @@
 package br.edu.femass.gui;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -35,7 +36,7 @@ public class LeitorController implements Initializable {
         private Button BtnSalvarLeitor;
 
         @FXML
-        private TableView<Aluno> tableListaLivros = new TableView<Aluno>();
+        private TableView<Aluno> tableListaAlunos = new TableView<Aluno>();
 
         @FXML
         private TableColumn<Aluno, Long> colIdAluno = new TableColumn<>();
@@ -88,68 +89,69 @@ public class LeitorController implements Initializable {
                 leitor.setEndereco(txtEndereco.getText());
                 leitor.setTelefone(txtTelefone.getText());
 
-                // if (incluindo) {
-                // dao.inserir(leitor);
-                // } else {
-                // dao.alterar(leitor);
-                // }
+                 /*if (incluindo) {
+                 dao.inserir(leitor);
+                 } else {
+                 dao.alterar(leitor);
+                 }*/
 
                 preencherTableAlunos();
                 preencherTableProfessores();
         }
 
-        // @FXML
-        // private void excluir_click(ActionEvent event) {
-        // dao.apagar(leitor);
-        // preencherTableAlunos();
-        // preencherTableProfessores();
-        // }
+         @FXML
+         private void excluir_click(ActionEvent event) {
+        /* dao.apagar(leitor);*/
+         preencherTableAlunos();
+         preencherTableProfessores();
+         }
 
         private void preencherTableAlunos() {
-                List<Leitor> leitores = dao.buscarTodosPorId();
+                /*List<Leitor> leitores = dao.buscarTodosPorId();*/
+                List<Aluno> leitores = new ArrayList<>();
 
-                ObservableList<Leitor> data = FXCollections.observableArrayList(leitores);
+                ObservableList<Aluno> data = FXCollections.observableArrayList(leitores);
                 tableListaAlunos.setItems(data);
         }
 
         private void preencherTableProfessores() {
-                List<Leitor> leitores = dao.buscarTodosPorId();
+                List<Professor> leitores = new ArrayList<>();
 
-                ObservableList<Leitor> data = FXCollections.observableArrayList(leitores);
+                ObservableList<Professor> data = FXCollections.observableArrayList(leitores);
                 tableListaProfessores.setItems(data);
         }
 
         @Override
         public void initialize(URL url, ResourceBundle rb) {
                 colIdAluno.setCellValueFactory(
-                                new PropertyValueFactory<Leitor, Long>("id"));
+                                new PropertyValueFactory<>("id"));
 
                 colMatriculaAluno.setCellValueFactory(
-                                new PropertyValueFactory<Leitor, String>("matricula"));
+                                new PropertyValueFactory<>("matricula"));
 
                 colNomeAluno.setCellValueFactory(
-                                new PropertyValueFactory<Leitor, String>("nome"));
+                                new PropertyValueFactory<>("nome"));
 
                 colEnderecoAluno.setCellValueFactory(
-                                new PropertyValueFactory<Leitor, Long>("endereco"));
+                                new PropertyValueFactory<>("endereco"));
 
                 colTelAluno.setCellValueFactory(
-                                new PropertyValueFactory<Leitor, Long>("telefone"));
+                                new PropertyValueFactory<>("telefone"));
 
                 colIdProfessor.setCellValueFactory(
-                                new PropertyValueFactory<Leitor, Long>("id"));
+                        new PropertyValueFactory<>("id"));
 
                 colDisciplinaProfessor.setCellValueFactory(
-                                new PropertyValueFactory<Leitor, String>("disciplina"));
+                        new PropertyValueFactory<>("disciplina"));
 
                 colNomeProfessor.setCellValueFactory(
-                                new PropertyValueFactory<Leitor, String>("nome"));
+                        new PropertyValueFactory<>("nome"));
 
                 colEnderecoProfessor.setCellValueFactory(
-                                new PropertyValueFactory<Leitor, Long>("endereco"));
+                        new PropertyValueFactory<>("endereco"));
 
                 colTelefoneProfessor.setCellValueFactory(
-                                new PropertyValueFactory<Leitor, Long>("telefone"));
+                        new PropertyValueFactory<>("telefone"));
 
                 preencherTableAlunos();
                 preencherTableProfessores();
