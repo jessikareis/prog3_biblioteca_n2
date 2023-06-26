@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
+import br.edu.femass.dao.EmprestimoDao;
 import br.edu.femass.model.Emprestimo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -66,49 +66,67 @@ public class EmprestismoController implements Initializable {
     @FXML
     private ListView listaAtrasados;
 
-    //private EmprestimoDao dao = new EmprestimoDao();
+    private EmprestimoDao dao_emprestimo = new EmprestimoDao();
     private Emprestimo emprestimo;
 
     private Boolean incluindo;
 
     @FXML
     private void btnSalvarEmprestimo_Click(ActionEvent event) {
+        // Implementação básica para salvar o empréstimo
+        Emprestimo novoEmprestimo = new Emprestimo();
+        novoEmprestimo.setLivro(comboBoxLivro.getSelectionModel().getSelectedItem());
+        novoEmprestimo.setExemplar(comboBoxExemplar.getSelectionModel().getSelectedItem());
+        novoEmprestimo.setLeitor(comboBoxLeitor.getSelectionModel().getSelectedItem());
+        novoEmprestimo.setDataEmprestimo(dateEmprestimo.getValue());
+        novoEmprestimo.setDataDevolucao(txtDataDevolucao.getText());
 
         // Emprestimo.setLivro(comboBoxLivro.getSelectionModel());
         // Emprestimo.setExemplar(comboBoxExemplar.getSelectionModel());
         // Emprestimo.setLeitor(comboBoxLeitor.getSelectionModel());
         // Emprestimo.setDataEmprestimo(dateEmprestimo.getValue());
         // Emprestimo.setDataDevolucao(txtDataDevolucao.getText());
-      
-        
+
         if (incluindo) {
-            //dao.inserir(emprestimo);
+            // dao.inserir(emprestimo);
         } else {
-            //dao.alterar(emprestimo);
+            // dao.alterar(emprestimo);
         }
 
         preencherTableEmprestimos();
         preencherListaAtrasados();
-       
+
     }
 
+    // @FXML
+    // private void excluir_click(ActionEvent event) {
+    // dao.apagar(emprestimo);
+    // preencherTableEmprestimos();
+    // preencherListaAtrasados();
+    // }
+
     @FXML
-    private void excluir_click(ActionEvent event) {
-        //dao.apagar(emprestimo);
-        preencherTableEmprestimos();
-        preencherListaAtrasados();
+    private void btnRemoverEmprestimo_Click(ActionEvent event) {
+        Emprestimo emprestimoSelecionado = tableListaEmprestimos.getSelectionModel().getSelectedItem();
+
+        if (emprestimoSelecionado != null) {
+            dao_emprestimo.apagar(emprestimoSelecionado);
+            preencherTableEmprestimos();
+            preencherListaAtrasados();
+        }
     }
 
     private void preencherListaAtrasados() {
-        List<Emprestimo> emprestimo = new ArrayList<>();
+        List<Emprestimo> emprestimosAtrasados = new ArrayList<>();
 
-        ObservableList<Emprestimo> data = FXCollections.observableArrayList(emprestimo);
+        ObservableList<Emprestimo> data = FXCollections.observableArrayList(emprestimosAtrasados);
+        listaAtrasados.setItems(data);
     }
 
     private void preencherTableEmprestimos() {
-        List<Emprestimo> livros = new ArrayList<>();
+        List<Emprestimo> emprestimos = new ArrayList<>();
 
-        ObservableList<Emprestimo> data = FXCollections.observableArrayList(emprestimo);
+        ObservableList<Emprestimo> data = FXCollections.observableArrayList(emprestimos);
         tableListaEmprestimos.setItems(data);
     }
 
@@ -126,6 +144,4 @@ public class EmprestismoController implements Initializable {
         System.out.println("Passei aqui");
     }
 
-    public void btnRemoverEmprestimo_Click(ActionEvent actionEvent) {
-    }
 }

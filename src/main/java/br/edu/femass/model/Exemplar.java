@@ -2,10 +2,10 @@ package br.edu.femass.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Exemplar {
@@ -14,12 +14,14 @@ public class Exemplar {
     private Long id;
     private String dataAquisicao;
     private Boolean emprestado;
-    public static Long proxCod ;
-    public Exemplar() {};
+    public static Long proxCod;
+
+    public Exemplar() {
+    };
 
     public Exemplar(String dataAquisicao, long id) {
         this.dataAquisicao = dataAquisicao;
-        this.id =  proxCod;
+        this.id = proxCod;
         proxCod++;
         this.emprestado = false;
     }
@@ -61,21 +63,19 @@ public class Exemplar {
         Exemplar.proxCod = proxCod;
     }
 
-
-    public static void atualizarProxCod(List<Exemplar> exemplares){
-        for (Exemplar exemplar : exemplares){
-            if (exemplar.getId() > proxCod){
+    public static void atualizarProxCod(List<Exemplar> exemplares) {
+        for (Exemplar exemplar : exemplares) {
+            if (exemplar.getId() > proxCod) {
                 proxCod = exemplar.getId();
-               return;
+                return;
             }
         }
     }
 
     @Override
     public String toString() {
-        return ("Data de aquisição: " +this.dataAquisicao + ", " + " Código: " + this.id);
+        return ("Data de aquisição: " + this.dataAquisicao + ", " + " Código: " + this.id);
     }
-
 
     @Override
     public boolean equals(Object obj) {

@@ -1,48 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="600.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.femass.gui.InicioController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="508.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.femass.gui.InicioController">
    <children>
-      <TabPane fx:id="containerTab" prefHeight="448.0" prefWidth="625.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab fx:id="inicioTab" text="Início">
-            <content>
-              <AnchorPane fx:id="inicioContainer" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="177.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../imagens%20p3/femass.png" />
-                           </image></ImageView>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-          <Tab fx:id="cadastrarLeitoresTab" text="Cadastrar Leitores">
-            <content>
-              <AnchorPane fx:id="cadastrarLeitoresContainer" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
-            <Tab fx:id="cadastrarAutoresTab" text="Cadastrar Autores">
-              <content>
-                <AnchorPane fx:id="cadastrarAutoresContainer" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
-            <Tab fx:id="cadastrarLivrosTab" text="Cadastrar Livros">
-               <content>
-                  <AnchorPane fx:id="cadastrarLivrosContainer" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-               </content>
-            </Tab>
-            <Tab fx:id="emprestimoTab" text="Emprestimo">
-               <content>
-                  <AnchorPane fx:id="emprestimoContainer" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-               </content>
-            </Tab>
-        </tabs>
-      </TabPane>
+      <Button layoutX="56.0" layoutY="336.0" mnemonicParsing="false" onAction="#btnLivro_Click" prefHeight="116.0" prefWidth="195.0" text="       Cadastrar Livro">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button layoutX="263.0" layoutY="204.0" mnemonicParsing="false" onAction="#btnLeitor_Click" prefHeight="116.0" prefWidth="195.0" text="    Leitor">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button layoutX="263.0" layoutY="336.0" mnemonicParsing="false" onAction="#btnEmprestimo_Click" prefHeight="116.0" prefWidth="195.0" text="         Emprestimo" textAlignment="RIGHT">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button layoutX="56.0" layoutY="204.0" mnemonicParsing="false" onAction="#btnAutor_Click" prefHeight="116.0" prefWidth="195.0" text="  Autor">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <ImageView fitHeight="143.0" fitWidth="138.0" layoutX="186.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/inicio.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="63.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Biblioteca FEMASS" textAlignment="CENTER" wrappingWidth="383.25">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="72.0" fitWidth="132.0" layoutX="56.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/autor.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="72.0" fitWidth="72.0" layoutX="263.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/leitor.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="72.0" fitWidth="72.0" layoutX="56.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/livro.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="64.0" fitWidth="72.0" layoutX="265.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/emprestimo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="64.0" fitWidth="96.0" layoutX="412.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/femass.png" />
+         </image>
+      </ImageView>
    </children>
-</StackPane>
+</Pane>

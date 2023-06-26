@@ -4,38 +4,27 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.femass.gui.LeitorController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="265.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.femass.gui.LeitorController">
    <children>
-      <TableView fx:id="tableListaAlunos" layoutX="264.0" layoutY="23.0" prefHeight="200.0" prefWidth="377.0">
-        <columns>
-          <TableColumn fx:id="colIdAluno" prefWidth="75.0" text="ID" />
-            <TableColumn fx:id="colMatriculaAluno" prefWidth="75.0" text="Matrícula" />
-          <TableColumn fx:id="colNomeAluno" prefWidth="75.0" text="Nome" />
-            <TableColumn fx:id="colEnderecoAluno" prefWidth="75.0" text="Endereço" />
-            <TableColumn fx:id="colTelAluno" prefWidth="75.0" text="Telefone" />
-        </columns>
-      </TableView>
-      <TableView fx:id="tableListaProfessores" layoutX="264.0" layoutY="274.0" prefHeight="200.0" prefWidth="377.0">
+      <TableView fx:id="tableListaLeitores" layoutX="264.0" layoutY="23.0" prefHeight="200.0" prefWidth="502.0">
          <columns>
-            <TableColumn fx:id="colIdProfessor" prefWidth="75.0" text="ID" />
-            <TableColumn fx:id="colDisciplinaProfessor" prefWidth="75.0" text="Disciplina" />
-            <TableColumn fx:id="colNomeProfessor" prefWidth="75.0" text="Nome" />
-            <TableColumn fx:id="colEnderecoProfessor" prefWidth="75.0" text="Endereço" />
-            <TableColumn fx:id="colTelefoneProfessor" prefWidth="75.0" text="Telefone" />
+            <TableColumn fx:id="colIdLeitor" prefWidth="44.0" text="ID" />
+            <TableColumn fx:id="colExtraLeitor" prefWidth="138.0" text="Matrícula / Disciplina" />
+            <TableColumn fx:id="colNomeLeitor" minWidth="0.0" prefWidth="115.0" text="Nome" />
+            <TableColumn fx:id="colEnderecoLeitor" prefWidth="96.0" text="Endereço" />
+            <TableColumn fx:id="colTelLeitor" prefWidth="108.0" text="Telefone" />
          </columns>
       </TableView>
-      <Label fx:id="ListaAlunos" layoutX="264.0" layoutY="6.0" prefHeight="17.0" prefWidth="136.0" text="Lista de Alunos" />
-      <Label fx:id="ListaProfessores" layoutX="264.0" layoutY="257.0" prefHeight="17.0" prefWidth="136.0" text="Lista de Professores" />
-      <Button fx:id="BtnRemoverAluno" layoutX="543.0" layoutY="223.0" mnemonicParsing="false" onAction="#btnRemoverAluno_Click" text="Remover Aluno" />
-      <Button fx:id="BtnRemoverProfessor" layoutX="525.0" layoutY="474.0" mnemonicParsing="false" onAction="#btnRemoverProfessor_Click" text="Remover Professor" />
+      <Label fx:id="ListaAlunos" layoutX="264.0" layoutY="6.0" prefHeight="17.0" prefWidth="136.0" text="Lista de Leitores" />
+      <Button fx:id="BtnRemoverLeitor" layoutX="485.0" layoutY="226.0" mnemonicParsing="false" onAction="#btnRemoverLeitor_Click" text="Remover Leitor" />
       <Label fx:id="Nome" layoutX="9.0" layoutY="37.0" prefHeight="17.0" prefWidth="45.0" text="Nome:" />
       <Label fx:id="Endereco" layoutX="9.0" layoutY="65.0" prefHeight="17.0" prefWidth="60.0" text="Endereço:" />
       <Label fx:id="Telefone" layoutX="9.0" layoutY="91.0" prefHeight="17.0" prefWidth="60.0" text="Telefone:" />
-      <TextField fx:id="txtNome" layoutX="69.0" layoutY="33.0" />
-      <TextField fx:id="txtEndereco" layoutX="69.0" layoutY="61.0" />
-      <TextField fx:id="txtTelefone" layoutX="69.0" layoutY="88.0" />
+      <TextField fx:id="txtLeitorNome" layoutX="69.0" layoutY="33.0" />
+      <TextField fx:id="txtLeitorEndereco" layoutX="69.0" layoutY="61.0" />
+      <TextField fx:id="txtLeitorTelefone" layoutX="69.0" layoutY="88.0" />
       <Button fx:id="BtnSalvarLeitor" layoutX="116.0" layoutY="211.0" mnemonicParsing="false" onAction="#btnSalvarLeitor_Click" text="Salvar novo leitor" />
-      <TextField fx:id="txtExtra" layoutX="76.0" layoutY="174.0" />
+      <TextField fx:id="txtLeitorExtra" layoutX="76.0" layoutY="174.0" />
       <Label fx:id="funcao1" layoutX="9.0" layoutY="178.0" prefHeight="17.0" prefWidth="60.0" text="Matrícula:" />
       <CheckBox fx:id="checkBoxProfessor" layoutX="7.0" layoutY="150.0" mnemonicParsing="false" onAction="#checkBoxProfessor_Select" text="Sou professor" />
    </children>

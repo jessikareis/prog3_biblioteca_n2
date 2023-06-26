@@ -1,13 +1,12 @@
 package br.edu.femass.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import java.time.LocalDate;
 
-public class Emprestimo{
+public class Emprestimo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long code;
@@ -17,12 +16,15 @@ public class Emprestimo{
     private Exemplar exemplar;
     private Leitor leitor;
 
-    public Emprestimo(){}
+    public Emprestimo() {
+    }
+
     public Emprestimo(LocalDate dataEmprestimo, Exemplar exemplar, Leitor leitor) {
         this.dataEmprestimo = dataEmprestimo;
         this.exemplar = exemplar;
         this.leitor = leitor;
-        this.dataPrevistaDevolucao = dataEmprestimo.plusDays(leitor.getPrazoMaxDevolucao());
+        // this.dataPrevistaDevolucao =
+        // dataEmprestimo.plusDays(leitor.getPrazoMaxDevolucao());
     }
 
     public LocalDate getDataEmprestimo() {
@@ -64,12 +66,12 @@ public class Emprestimo{
     public void setLeitor(Leitor leitor) {
         this.leitor = leitor;
     }
+
     @Override
     public String toString() {
         return ("Código do exemplar: " + this.exemplar.getId() + ", " +
                 "Nome: " + this.leitor.getNome() + ", " +
-                "Dia: " + this.dataEmprestimo + ", "
-                );
+                "Dia: " + this.dataEmprestimo + ", ");
     }
-   
+
 }

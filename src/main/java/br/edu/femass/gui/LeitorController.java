@@ -1,15 +1,12 @@
 package br.edu.femass.gui;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import br.edu.femass.dao.AlunoDao;
-import br.edu.femass.dao.ProfessorDao;
-import br.edu.femass.model.Aluno;
+import br.edu.femass.dao.DaoLeitor;
+import br.edu.femass.model.Autor;
 import br.edu.femass.model.Leitor;
-import br.edu.femass.model.Professor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,181 +14,147 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class LeitorController implements Initializable {
 
         @FXML
-        private TextField txtNome;
+        private TextField txtLeitorNome;
         @FXML
-        private TextField txtEndereco;
+        private TextField txtLeitorEndereco;
         @FXML
-        private TextField txtTelefone;
+        private TextField txtLeitorTelefone;
         @FXML
-        private TextField txtExtra;
+        private TextField txtLeitorExtra;
+
+        @FXML
+        private Label funcao1;
+        @FXML
+        private Button BtnSalvarLeitor;
+        @FXML
+        private Button BtnRemoverLeitor;
+
         @FXML
         private CheckBox checkBoxProfessor;
 
         @FXML
-        private Label funcao1;
-
+        private ListView<Leitor> ListaLeitores;
         @FXML
-        private Button BtnSalvarLeitor;
-
+        private TableView<Leitor> tableListaLeitores = new TableView<Leitor>();
         @FXML
-        private TableView<Aluno> tableListaAlunos = new TableView<Aluno>();
-
+        private TableColumn<Leitor, Long> colIdLeitor = new TableColumn<>();
         @FXML
-        private TableColumn<Aluno, Long> colIdAluno = new TableColumn<>();
-
+        private TableColumn<Leitor, String> colExtraLeitor = new TableColumn<>();
         @FXML
-        private TableColumn<Aluno, String> colMatriculaAluno = new TableColumn<>();
-
+        private TableColumn<Leitor, String> colNomeLeitor = new TableColumn<>();
         @FXML
-        private TableColumn<Aluno, String> colNomeAluno = new TableColumn<>();
-
+        private TableColumn<Leitor, String> colEnderecoLeitor = new TableColumn<>();
         @FXML
-        private TableColumn<Aluno, String> colEnderecoAluno = new TableColumn<>();
-
+        private TableColumn<Leitor, String> colTelLeitor = new TableColumn<>();
         @FXML
-        private TableColumn<Aluno, String> colTelAluno = new TableColumn<>();
+        private TableColumn<Leitor, String> colFuncaoLeitor = new TableColumn<>();
 
-        @FXML
-        private Button BtnRemoverAluno;
-
-        @FXML
-        private TableView<Professor> tableListaProfessores = new TableView<Professor>();
-
-        @FXML
-        private TableColumn<Professor, Long> colIdProfessor = new TableColumn<>();
-
-        @FXML
-        private TableColumn<Professor, String> colDisciplinaProfessor = new TableColumn<>();
-
-        @FXML
-        private TableColumn<Professor, String> colNomeProfessor = new TableColumn<>();
-
-        @FXML
-        private TableColumn<Professor, String> colEnderecoProfessor = new TableColumn<>();
-
-        @FXML
-        private TableColumn<Professor, String> colTelefoneProfessor = new TableColumn<>();
-        @FXML
-        private Button BtnRemoverProfessor;
-
-        private AlunoDao dao_aluno = new AlunoDao();
-        private ProfessorDao dao_professor = new ProfessorDao();
-
-        private Aluno aluno;
-        private Professor professor;
+        private DaoLeitor dao_leitor = new DaoLeitor();
         private Leitor leitor;
 
-        private Boolean incluindo;
-
         @FXML
-        private void checkBoxProfessor_Select(ActionEvent event){
-                
-                if(checkBoxProfessor.isSelected()){
+        private void checkBoxProfessor_Select(ActionEvent event) {
+                if (checkBoxProfessor.isSelected()) {
                         funcao1.setText("Disciplina:");
-                }else{
+                } else {
                         funcao1.setText("Matrícula:");
                 }
-        //         checkBoxProfessor.setSelected(false);
         }
 
         @FXML
         private void btnSalvarLeitor_Click(ActionEvent event) {
+                leitor = new Leitor();
+                leitor.setNome(txtLeitorNome.getText());
+                leitor.setEndereco(txtLeitorEndereco.getText());
+                leitor.setTelefone(txtLeitorTelefone.getText());
 
-                leitor.setNome(txtNome.getText());
-                leitor.setEndereco(txtEndereco.getText());
-                leitor.setTelefone(txtTelefone.getText());
-                leitor.setFuncao(checkBoxProfessor.isSelected());
-                leitor.setExtra(txtExtra.getText());
-                
+                // if (checkBoxFuncao.isSelected()) {
+                // leitor.setFuncao("Professor");
+                // } else {
+                // leitor.setFuncao("Aluno");
+                // }
+                leitor.setExtra(txtLeitorExtra.getText());
 
-                
-                //  if (incluindo) {
-                //  dao.inserir(leitor);
-                //  } else {
-                //  dao.alterar(leitor);
-                //  }
-                
-                dao_aluno.inserir(leitor);
+                // if (incluindo) {
+                // dao.inserir(leitor);
+                // } else {
+                // dao.alterar(leitor);
+                // }
 
+                dao_leitor.inserir(leitor);
+                preencherLista();
 
-                // preencherTableAlunos();
-                // preencherTableProfessores();
         }
 
         @FXML
-        private void btnRemoverAluno_Click(ActionEvent event) {
-                /* dao.apagar(leitor); */
-                preencherTableAlunos();
-                preencherTableProfessores();
+        private void btnRemoverLeitor_Click(ActionEvent event) {
+
+                Leitor leitorSelecionado = tableListaLeitores.getSelectionModel().getSelectedItem();
+
+                if (leitorSelecionado != null) {
+                        dao_leitor.apagar(leitorSelecionado);
+                        preencherLista();
+                }
         }
 
         @FXML
-        private void btnRemoverProfessor_Click(ActionEvent event) {
-                /* dao.apagar(leitor); */
-                preencherTableAlunos();
-                preencherTableProfessores();
+        private void tableListaLeitores_MouseClicked(MouseEvent event) {
+                exibirDados();
         }
 
-        private void preencherTableAlunos() {
-                /* List<Leitor> leitores = dao.buscarTodosPorId(); */
-                List<Aluno> leitores = new ArrayList<>();
+        private void exibirDados() {
+                this.leitor = tableListaLeitores.getSelectionModel().getSelectedItem();
 
-                ObservableList<Aluno> data = FXCollections.observableArrayList(leitores);
-                tableListaAlunos.setItems(data);
+                if (leitor == null)
+                        return;
+
+                txtLeitorNome.setText(leitor.getNome());
+                txtLeitorEndereco.setText(leitor.getEndereco());
+                txtLeitorTelefone.setText(leitor.getTelefone());
+                if (leitor.getFuncao().equals("Aluno")) {
+                        checkBoxProfessor.setSelected(false);
+                }
+                if (leitor.getFuncao().equals("Professor")) {
+                        checkBoxProfessor.setSelected(true);
+                }
+                txtLeitorExtra.setText(leitor.getExtra());
+                txtLeitorExtra.setText(leitor.getFuncao());
         }
 
-        private void preencherTableProfessores() {
-                List<Professor> leitores = new ArrayList<>();
+        private void preencherLista() {
+                List<Leitor> leitores = dao_leitor.buscarTodos();
 
-                ObservableList<Professor> data = FXCollections.observableArrayList(leitores);
-                tableListaProfessores.setItems(data);
+                ObservableList<Leitor> data = FXCollections.observableArrayList(leitores);
+                tableListaLeitores.setItems(data);
         }
 
         @Override
         public void initialize(URL url, ResourceBundle rb) {
+                colIdLeitor.setCellValueFactory(
+                                new PropertyValueFactory<Leitor, Long>("id"));
+                colExtraLeitor.setCellValueFactory(
+                                new PropertyValueFactory<Leitor, String>("extra"));
+                colNomeLeitor.setCellValueFactory(
+                                new PropertyValueFactory<Leitor, String>("nome"));
+                colEnderecoLeitor.setCellValueFactory(
+                                new PropertyValueFactory<Leitor, String>("endereco"));
+                colTelLeitor.setCellValueFactory(
+                                new PropertyValueFactory<Leitor, String>("telefone"));
+                colFuncaoLeitor.setCellValueFactory(
+                                new PropertyValueFactory<Leitor, String>("funcao"));
 
-                colIdAluno.setCellValueFactory(
-                                new PropertyValueFactory<>("id"));
-
-                colMatriculaAluno.setCellValueFactory(
-                                new PropertyValueFactory<>("matricula"));
-
-                colNomeAluno.setCellValueFactory(
-                                new PropertyValueFactory<>("nome"));
-
-                colEnderecoAluno.setCellValueFactory(
-                                new PropertyValueFactory<>("endereco"));
-
-                colTelAluno.setCellValueFactory(
-                                new PropertyValueFactory<>("telefone"));
-
-                colIdProfessor.setCellValueFactory(
-                                new PropertyValueFactory<>("id"));
-
-                colDisciplinaProfessor.setCellValueFactory(
-                                new PropertyValueFactory<>("disciplina"));
-
-                colNomeProfessor.setCellValueFactory(
-                                new PropertyValueFactory<>("nome"));
-
-                colEnderecoProfessor.setCellValueFactory(
-                                new PropertyValueFactory<>("endereco"));
-
-                colTelefoneProfessor.setCellValueFactory(
-                                new PropertyValueFactory<>("telefone"));
-
-                // preencherTableAlunos();
-                // preencherTableProfessores();
+                preencherLista();
 
         }
 

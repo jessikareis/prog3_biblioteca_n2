@@ -1,94 +1,205 @@
 package br.edu.femass.model;
 
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
-
-public class Livro {
+public class Livro implements List<Livro> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String nome;
-    private Long id;
+    protected Long id;
+    protected Long cod;
+    public String titulo;
+    @ManyToOne
+    @JoinColumn(name = "autores_id")
+    public Autor autores;
 
-    private ArrayList<Autor> autores;
-    public static long proxCod = 1;
+    // pensar que livro nao é um extend de autor e que livro é apenas um private
+    // List<livro> livros;
+    // acho que vai dar errado na hora de emprestar pq nao tera um id
 
-    private ArrayList<Exemplar> exemplares;
+    public Livro(String titulo, Long cod, Autor autores) {
+        this.titulo = titulo;
+        this.autores = autores;
+        this.cod = cod;
+    }
 
     public Livro() {
-        this.autores = new ArrayList<>();
-        this.exemplares = new ArrayList<>();
+
     }
 
-    public Livro(String nome, Long id) {
-        this.nome = nome;
-        this.id = proxCod;
-        proxCod++;
-        this.autores = new ArrayList<>();
-        this.exemplares = new ArrayList<>();
-    }
-
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public ArrayList<Autor> getAutores() {
+    public Autor getAutores() {
         return autores;
     }
 
-    public void setAutores(ArrayList<Autor> autores) {
-        this.autores = autores;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public static long getIdAtual() {
-        proxCod++;
-        return proxCod;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public ArrayList<Exemplar> getExemplares() {
-        return exemplares;
+    public Long getId() {
+        return id;
     }
 
-    public void setExemplares(ArrayList<Exemplar> exemplares) {
-        this.exemplares = exemplares;
+    public Long getCod() {
+        return cod;
     }
 
-    public static void atualizarProxCod(List<Livro> livros) {
-        for (Livro livro : livros) {
-            if (livro.getId() > proxCod) {
-                proxCod = livro.getId();
-                return;
-            }
-        }
+    public void setCod(Long cod) {
+        this.cod = cod;
     }
 
     @Override
     public String toString() {
-        return (this.nome + ", " + this.getAutores().toString() + " Código: " + this.id);
+        return this.titulo;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        Livro livro = (Livro) obj;
-        return this.id.equals(livro.getId());
+    public int size() {
+
+        return 0;
     }
+
+    @Override
+    public boolean isEmpty() {
+
+        return false;
+    }
+
+    @Override
+    public boolean contains(Object o) {
+
+        return false;
+    }
+
+    @Override
+    public Iterator<Livro> iterator() {
+
+        return null;
+    }
+
+    @Override
+    public Object[] toArray() {
+
+        return null;
+    }
+
+    @Override
+    public <T> T[] toArray(T[] a) {
+
+        return null;
+    }
+
+    @Override
+    public boolean add(Livro e) {
+
+        return false;
+    }
+
+    @Override
+    public boolean remove(Object o) {
+
+        return false;
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> c) {
+
+        return false;
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends Livro> c) {
+
+        return false;
+    }
+
+    @Override
+    public boolean addAll(int index, Collection<? extends Livro> c) {
+
+        return false;
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> c) {
+
+        return false;
+    }
+
+    @Override
+    public boolean retainAll(Collection<?> c) {
+
+        return false;
+    }
+
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public Livro get(int index) {
+
+        return null;
+    }
+
+    @Override
+    public Livro set(int index, Livro element) {
+
+        return null;
+    }
+
+    @Override
+    public void add(int index, Livro element) {
+
+    }
+
+    @Override
+    public Livro remove(int index) {
+
+        return null;
+    }
+
+    @Override
+    public int indexOf(Object o) {
+
+        return 0;
+    }
+
+    @Override
+    public int lastIndexOf(Object o) {
+
+        return 0;
+    }
+
+    @Override
+    public ListIterator<Livro> listIterator() {
+
+        return null;
+    }
+
+    @Override
+    public ListIterator<Livro> listIterator(int index) {
+
+        return null;
+    }
+
+    @Override
+    public List<Livro> subList(int fromIndex, int toIndex) {
+
+        return null;
+    }
+
 }

@@ -1,51 +1,22 @@
 package br.edu.femass.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 
 @Entity
 public class Leitor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected String endereco;
     protected Long id;
-    protected String telefone;
     protected String nome;
-    protected Integer prazoMaxDevolucao;
+    protected String endereco;
+    protected String telefone;
+    protected String funcao;
     protected String extra;
-    protected boolean funcao;
-
-    public static Long proxCod;
-
-    public Leitor (){}
-    public Leitor(String endereco, String telefone, String nome, Integer prazoMaxDevolucao, String extra, boolean funcao) {
-        this.endereco = endereco;
-        this.telefone = telefone;
-        this.nome = nome;
-        this.prazoMaxDevolucao = prazoMaxDevolucao;
-        this.id = proxCod;
-        this.extra = extra;
-        this.funcao = funcao;
-        proxCod++;
-
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public void setExtra(String extra) {
-        this.extra = extra;
-    }
-    public String getExtra() {
-        return extra;
-    }
 
     public Long getId() {
         return id;
@@ -53,14 +24,6 @@ public class Leitor {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
     }
 
     public String getNome() {
@@ -71,20 +34,35 @@ public class Leitor {
         this.nome = nome;
     }
 
-    public Integer getPrazoMaxDevolucao() {
-        return prazoMaxDevolucao;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setPrazoMaxDevolucao(Integer prazoMaxDevolucao) {
-        this.prazoMaxDevolucao = prazoMaxDevolucao;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
-    public void setFuncao(boolean funcao) {
-        this.funcao = funcao;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public boolean getFuncao(){
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getFuncao() {
         return funcao;
     }
 
+    public void setFuncao(String funcao) {
+        this.funcao = funcao;
+    }
+
+    public String getExtra() {
+        return extra;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
+    }
 }

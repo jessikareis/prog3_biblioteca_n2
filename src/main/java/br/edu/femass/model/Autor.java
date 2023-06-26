@@ -1,22 +1,28 @@
 package br.edu.femass.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Autor {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "autores")
+    private List<Livro> livros;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String nome;
-    private String nacionalidade;
+    protected Long id;
+    protected String nome;
+    protected String nacionalidade;
     public static Long proxCod;
-    
-    public Autor() {}
+
+    public Autor() {
+    }
 
     public Autor(String nome, String nacionalidade) {
         this.nome = nome;
@@ -45,29 +51,43 @@ public class Autor {
         return id;
     }
 
-    // @Override
-    // public String toString() {
-    //     return (this.nome + ", " + this.nacionalidade + ", " + this.id);
-    // }
+    @Override
+    public String toString() {
+        return (this.nome + ", " + this.nacionalidade);
+    }
 
     public static Long getProxCod() {
         proxCod++;
         return proxCod;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        Autor autor = (Autor) obj;
-        return this.nome.equals(autor.getNome()) && this.nacionalidade.equals(autor.getNacionalidade());
+    public List<Livro> getLivros() {
+        return livros;
     }
 
-    public static void atualizarProxCod(List<Autor> autores){
-        for (Autor autor : autores){
-            if (autor.getId() > proxCod){
+    public void setLivros(List<Livro> livros) {
+        this.livros = livros;
+    }
+    // @Override
+    // public boolean equals(Object obj) {
+    // Autor autor = (Autor) obj;
+    // // return
+    // this.nome.equals(autor.getNome())&&this.nacionalidade.equals(autor.getNacionalidade());
+    // return this.nome.equals(autor.getNome());
+    // }
+
+    public static void atualizarProxCod(List<Autor> autores) {
+        for (Autor autor : autores) {
+            if (autor.getId() > proxCod) {
                 proxCod = autor.getId();
-                 return;
+                return;
             }
         }
     }
-}
 
+    public void adicionarLivros(String titulo, long cod, Autor autores) {
+        if (livros == null)
+            livros = new ArrayList();
+        livros.add(new Livro(titulo, cod, autores));
+    }
+}
